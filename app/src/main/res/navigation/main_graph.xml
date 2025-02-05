@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.meuapp.ui.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.meuapp.ui.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_criarContaFragment"
+            app:destination="@id/criarContaFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_esqueceu_SenhaFragment"
+            app:destination="@id/esqueceu_SenhaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/criarContaFragment"
+        android:name="com.example.meuapp.ui.auth.CriarContaFragment"
+        android:label="fragment_criar_conta"
+        tools:layout="@layout/fragment_criar_conta" >
+        <action
+            android:id="@+id/action_criarContaFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/esqueceu_SenhaFragment"
+        android:name="com.example.meuapp.ui.auth.Esqueceu_SenhaFragment"
+        android:label="fragment_esqueceu__senha"
+        tools:layout="@layout/fragment_esqueceu__senha" />
+</navigation>
