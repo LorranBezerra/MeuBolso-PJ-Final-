@@ -27,6 +27,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         Handler(Looper.getMainLooper()).postDelayed(this::checkAuth, 2000)
     }
 
@@ -34,6 +35,8 @@ class SplashFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
     private fun checkAuth(){
         findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
 

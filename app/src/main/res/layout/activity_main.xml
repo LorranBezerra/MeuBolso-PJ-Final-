@@ -9,15 +9,34 @@
     tools:context=".ui.MainActivity">
 
 
+        <!-- Conteúdo principal -->
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Navigation View (NavBar) -->
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_gravity="start">
+
+        </com.google.android.material.navigation.NavigationView>
+
+
+
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/nav_host_fragment"
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_graph">
 
-
     </androidx.fragment.app.FragmentContainerView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

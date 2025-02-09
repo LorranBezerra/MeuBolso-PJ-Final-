@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_loginFragment_to_esqueceu_SenhaFragment"
             app:destination="@id/esqueceu_SenhaFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/criarContaFragment"
@@ -34,10 +37,61 @@
         <action
             android:id="@+id/action_criarContaFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_criarContaFragment_to_verificarEmailFragment"
+            app:destination="@id/verificarEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/esqueceu_SenhaFragment"
         android:name="com.example.meuapp.ui.auth.Esqueceu_SenhaFragment"
         android:label="fragment_esqueceu__senha"
-        tools:layout="@layout/fragment_esqueceu__senha" />
+        tools:layout="@layout/fragment_esqueceu__senha" >
+        <action
+            android:id="@+id/action_esqueceu_SenhaFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verificarEmailFragment"
+        android:name="com.example.meuapp.ui.auth.VerificarEmailFragment"
+        android:label="VerificarEmailFragment" >
+        <action
+            android:id="@+id/action_verificarEmailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.meuapp.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_adicionarFragment"
+            app:destination="@id/adicionarFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_configuracoesFragment"
+            app:destination="@id/configuracoesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adicionarFragment"
+        android:name="com.example.meuapp.ui.AdicionarFragment"
+        android:label="fragment_adicionar"
+        tools:layout="@layout/fragment_adicionar" >
+        <action
+            android:id="@+id/action_adicionarFragment_to_configuracoesFragment"
+            app:destination="@id/configuracoesFragment" />
+        <action
+            android:id="@+id/action_adicionarFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/configuracoesFragment"
+        android:name="com.example.meuapp.ui.ConfiguracoesFragment"
+        android:label="fragment_configuracoes"
+        tools:layout="@layout/fragment_configuracoes" >
+        <action
+            android:id="@+id/action_configuracoesFragment_to_adicionarFragment"
+            app:destination="@id/adicionarFragment" />
+        <action
+            android:id="@+id/action_configuracoesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

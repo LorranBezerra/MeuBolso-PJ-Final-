@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textColor="@color/black"
-        android:text="Verificação de E-mail"/>
+        android:text="Alteração de Senha"/>
 
 </androidx.appcompat.widget.Toolbar>
     
@@ -54,7 +54,7 @@
                     android:text="Digite seu endereço de email" />
 
                 <EditText
-                    android:id="@+id/txt_email"
+                    android:id="@+id/txt_email_recuperarsenha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
@@ -70,11 +70,11 @@
                     android:textColor="@color/black" />
 
                 <Button
-                    android:id="@+id/buttonlogin"
+                    android:id="@+id/btnrredefinir_senha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="Login" />
+                    android:text="Verificar Email" />
 
 
             </LinearLayout>
