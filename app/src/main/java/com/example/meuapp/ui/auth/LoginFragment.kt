@@ -36,7 +36,6 @@ class LoginFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         initClicks()
 
-
     }
     private fun initClicks(){
         binding.buttonlogin.setOnClickListener {
@@ -74,7 +73,7 @@ class LoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, senha)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_global_homeFragment)
                 } else {
                     Toast.makeText(requireContext(), "Email ou Senha incorreta", Toast.LENGTH_SHORT).show()
 

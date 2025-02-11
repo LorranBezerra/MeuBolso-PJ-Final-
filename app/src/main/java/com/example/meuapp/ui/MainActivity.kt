@@ -6,6 +6,9 @@ import android.os.Binder
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +24,7 @@ import com.example.meuapp.R.id.login
 import com.example.meuapp.R.id.loginFragment
 import com.example.meuapp.R.id.main_graph
 import com.example.meuapp.databinding.ActivityMainBinding
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -28,23 +32,20 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+
+    // Criando uma referência para o banco de dados
+    val database = FirebaseDatabase.getInstance()
+    val myRef = database.getReference("message")
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(/* view = */ binding.root)
         supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
-        // Inicializa a Toolbar
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)  // Define a Toolbar como a ActionBar
-
-        // Configura a navegação com a Toolbar
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        setupActionBarWithNavController(navController)  // Configura a ActionBar para navegar
-
-        // Adicionar um menu à Toolbar (opcional)
-        toolbar.inflateMenu(R.menu.bottom_nav_menu)  // Se você tiver um menu específico
+// Escrevendo dados
+        myRef.setValue("Hello, Firebase teste!")
     }
 
 

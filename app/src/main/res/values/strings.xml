@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name">meuapp</string>
     <!-- TODO: Remove or change this placeholder text -->
+
+
+    <string-array name="dropdown_options">
+        <item>Carro</item>
+        <item>aluguel</item>
+        <item>alimentação</item>
+        <item>Lazer</item>
+        <item>Roupa</item>
+        <item>Educação</item>
+        <item>Remedio</item>
+        <item>Fatura Do Cartão</item>
+        <item>outros</item>
+    </string-array>
+
+
+    <string-array name="dropdown_options_2">
+        <item>Pix</item>
+        <item>Dinheiro</item>
+        <item>Debito em conta</item>
+        <item>Cartao de Credito</item>
+        <item>Outros</item>
+    </string-array>
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -57,8 +57,8 @@ class VerificarEmailFragment : Fragment() {
         val user = FirebaseAuth.getInstance().currentUser
         user?.reload()?.addOnCompleteListener { task ->
             if (task.isSuccessful && user.isEmailVerified) {
-                // Usuário verificou o e-mail, navegue para a tela inicial
-                findNavController().navigate(R.id.action_verificarEmailFragment_to_homeFragment)
+                // Usuário verificou o e-mail, navegue para a tela de login
+                findNavController().navigate(R.id.action_verificarEmailFragment_to_loginFragment)
             } else {
                 // Caso contrário, mantenha na tela de verificação
                 Toast.makeText(

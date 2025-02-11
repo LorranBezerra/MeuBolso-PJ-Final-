@@ -1,6 +1,7 @@
-package com.example.meuapp.ui
+package com.example.meuapp.ui.Config
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,34 +9,32 @@ import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.meuapp.R
-import com.example.meuapp.databinding.FragmentHomeBinding
+import com.example.meuapp.databinding.FragmentConfiguracoesBinding
+import com.example.meuapp.databinding.FragmentLoginBinding
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+class ConfiguracoesFragment : Fragment() {
+    private var _binding: FragmentConfiguracoesBinding? = null
     private val binding get() = _binding!!
-    private var selectedTab = 1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        verificarUsuario()
-    }
+    private lateinit var auth: FirebaseAuth
+    private var selectedTab = 3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentConfiguracoesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = Firebase.auth
         initClicks()
         setupTabs()
     }
@@ -46,15 +45,29 @@ class HomeFragment : Fragment() {
     }
 
     private fun initClicks() {
-        binding.btnMenuMetas.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_metasFragment)
+        binding.txtidioma.setOnClickListener {
+
         }
-        binding.btnMenuDespesas.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_despesasFragment)
+        binding.tvInfoApp.setOnClickListener {
+            findNavController().navigate(R.id.action_configuracoesFragment_to_informacoesFragment)
         }
-        binding.btnMenuReceitas.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_receitasFragment)
+        binding.tvConta.setOnClickListener {
+
         }
+        binding.txtSenhacofig.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_esqueceu_SenhaFragment)
+        }
+        binding.tvExcluirConta.setOnClickListener {
+            findNavController().navigate(R.id.action_configuracoesFragment_to_excluirContaFragment)
+        }
+        binding.btnSair.setOnClickListener {
+            LogoutApp()
+        }
+    }
+
+    private fun LogoutApp() {
+        auth.signOut()
+        findNavController().navigate(R.id.action_configuracoesFragment_to_autenticacao)
     }
 
     private fun setupTabs() {
@@ -72,18 +85,9 @@ class HomeFragment : Fragment() {
     private fun setTab(tab: Int, layout: View, imageView: ImageView, textView: TextView, iconRes: Int) {
         if (selectedTab != tab) {
             when (tab) {
-                1 -> {
-                    parentFragmentManager.beginTransaction()
-                        .setReorderingAllowed(true)
-                        .replace(R.id.fragment_container_no_home_fragment, HomeFragment())
-                        .commit()
-                }
-                2 -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_adicionarFragment)
-                }
-                3 -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_configuracoesFragment)
-                }
+                1 -> findNavController().navigate(R.id.action_configuracoesFragment_to_homeFragment)
+                2 -> findNavController().navigate(R.id.action_configuracoesFragment_to_adicionarFragment)
+                3 -> findNavController().navigate(R.id.configuracoesFragment)
             }
 
             resetTabs()
@@ -115,13 +119,5 @@ class HomeFragment : Fragment() {
         binding.layoutHome.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.transparent))
         binding.layoutAdicionar.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.transparent))
         binding.layoutConfiguracoes.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.transparent))
-    }
-
-    private fun verificarUsuario() {
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user != null && !user.isEmailVerified) {
-            Toast.makeText(requireContext(), "Verifique seu e-mail antes de continuar", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_criarContaFragment_to_verificarEmailFragment)
-        }
     }
 }

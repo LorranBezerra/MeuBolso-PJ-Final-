@@ -67,4 +67,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.5")
     implementation ("com.google.android.material:material:1.10.0")
 
+    implementation ("com.google.firebase:firebase-database:20.0.5")
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
+
 }
