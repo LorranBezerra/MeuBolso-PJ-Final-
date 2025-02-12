@@ -1,22 +1,23 @@
 package com.example.meuapp.ui.helper
 
-
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class FirebaseHelper {
-    companion object{
-        fun get Database() = FirebaseDataBase.getInstance().reference
+    companion object {
+        fun getDatabase() = FirebaseDatabase.getInstance().reference
 
-        private fun getAuth() = FirabaseAuth.getInstance()
+        private fun getAuth() = FirebaseAuth.getInstance()
 
-        fun getIdUser() = getAuth().uid
-        fun IsAutenticated() = getAuth().currentUser != null
-        fun validError(error: String) : int {
-            return when (error){
-                error.contains()
-                else ->{
-                    0
-                }
+        fun getIdUser(): String? = getAuth().uid
+
+        fun isAuthenticated(): Boolean = getAuth().currentUser != null
+
+        fun validateError(error: String): Int {
+            return when {
+                error.contains("network") -> 1 // Exemplo de código de erro para falha de rede
+                error.contains("permission") -> 2 // Exemplo de código de erro para permissão negada
+                else -> 0
             }
         }
     }

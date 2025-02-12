@@ -129,7 +129,11 @@
     <fragment
         android:id="@+id/excluirContaFragment"
         android:name="com.example.meuapp.ui.Config.ExcluirContaFragment"
-        android:label="ExcluirContaFragment" />
+        android:label="ExcluirContaFragment" >
+        <action
+            android:id="@+id/action_excluirContaFragment_to_autenticacao"
+            app:destination="@id/autenticacao" />
+    </fragment>
     <fragment
         android:id="@+id/informacoesFragment"
         android:name="com.example.meuapp.ui.Config.informacoesFragment"

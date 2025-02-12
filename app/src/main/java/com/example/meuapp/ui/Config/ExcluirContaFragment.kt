@@ -1,60 +1,61 @@
 package com.example.meuapp.ui.Config
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.meuapp.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ExcluirContaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ExcluirContaFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_excluir_conta, container, false)
+        // Inflar o layout para este fragmento
+        val binding = inflater.inflate(R.layout.fragment_excluir_conta, container, false)
+
+        // Referência ao botão para excluir a conta
+        val deleteButton: Button = binding.findViewById(R.id.apagarconta)
+
+        // Configurar o evento de clique para excluir a conta
+        deleteButton.setOnClickListener {
+            deleteUserAccount()
+        }
+
+        return binding
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ExcluirContaFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ExcluirContaFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun deleteUserAccount() {
+        val user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            user.delete()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        // Conta apagada com sucesso
+                        Toast.makeText(requireContext(), "Conta apagada com sucesso", Toast.LENGTH_SHORT).show()
+
+                        // Navegar para a tela de login após a exclusão
+                        findNavController().navigate(R.id.action_excluirContaFragment_to_autenticacao) // Ajuste conforme sua navegação
+                    } else {
+                        // Erro ao apagar conta
+                        Toast.makeText(requireContext(), "Erro ao apagar a conta", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
+        } else {
+            // Usuário não está autenticado
+            Toast.makeText(requireContext(), "Usuário não autenticado", Toast.LENGTH_SHORT).show()
+        }
     }
 }

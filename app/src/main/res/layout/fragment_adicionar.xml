@@ -10,14 +10,19 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="393dp"
-        android:layout_height="623dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="9dp"
         android:padding="10dp"
         app:cardBackgroundColor="#C8C8C8"
         app:cardCornerRadius="15dp"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="10dp">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -147,9 +152,9 @@
 
                 <!-- Switch para Valor Fixo -->
 
-                <!-- Botão Confirmar -->
 
-                <!-- Barra de navegação inferior -->
+
+
                 <Switch
                     android:id="@+id/switchValorFixo"
                     android:layout_width="wrap_content"
@@ -159,16 +164,15 @@
                     android:text="Valor Fixo"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/etDescricao">
-
                 </Switch>
-
+                <!-- Botão Confirmar -->
                 <Button
                     android:id="@+id/btnConfirmar"
                     android:layout_width="346dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="44dp"
                     android:backgroundTint="@color/gray"
-                    android:enabled="false"
+
                     android:text="Confirmar"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -179,9 +183,10 @@
             </LinearLayout>
         </ScrollView>
     </androidx.cardview.widget.CardView>
-
+    <!-- Barra de navegação inferior -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="false"
         android:background="@color/white"
@@ -191,12 +196,13 @@
         android:paddingStart="20dp"
         android:paddingTop="15dp"
         android:paddingEnd="20dp"
+
         android:paddingBottom="15dp"
         android:weightSum="4"
-
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
-        tools:layout_editor_absoluteX="0dp"
         tools:targetApi="lollipop">
 
         <LinearLayout
@@ -234,8 +240,8 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:gravity="center"
             android:background="@drawable/round_back_home"
+            android:gravity="center"
             android:orientation="horizontal"
             android:paddingStart="5dp"
             android:paddingEnd="5dp">
@@ -283,7 +289,7 @@
                 android:text="Configurações"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </LinearLayout>
 
