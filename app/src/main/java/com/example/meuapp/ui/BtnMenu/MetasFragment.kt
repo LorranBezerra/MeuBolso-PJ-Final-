@@ -61,7 +61,7 @@ class MetasFragment : Fragment() {
                             val transacao = snap.getValue(Transacao::class.java)
                             Log.d("FirebaseData", "Transação recebida: $transacao")
 
-                            if (transacao != null && transacao.tipo == "Metas") {
+                            if (transacao != null && transacao.tipo == "Meta") {
                                 transacaoList.add(transacao)
                             }
                         }
